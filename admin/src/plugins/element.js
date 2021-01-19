@@ -22,7 +22,10 @@ import {
   Form,
   FormItem,
   Message,
-  MessageBox
+  MessageBox,
+  Pagination,
+  Row,
+  Col
 } from 'element-ui'
 Vue.use(Button)
 Vue.use(Input)
@@ -45,6 +48,9 @@ Vue.use(Card)
 Vue.use(Dialog)
 Vue.use(Form)
 Vue.use(FormItem)
+Vue.use(Pagination)
+Vue.use(Row)
+Vue.use(Col)
 
 Vue.prototype.$message = Message
 Vue.prototype.$confirm = MessageBox.confirm

@@ -111,7 +111,7 @@ export default {
           this.getCateList()
         })
         .catch(() => {
-          this.$message.info('删除失败')
+          this.$message.info('删除失败!')
         })
     }
   }
