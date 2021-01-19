@@ -18,16 +18,22 @@
         </el-menu-item>
         <!-- 分类管理 -->
         <el-submenu index="1">
-          <template slot="title"><i class="el-icon-menu"></i>分类管理</template>
+          <template slot="title">
+            <i class="el-icon-menu"></i>
+            <span slot="title">分类管理</span>
+          </template>
           <el-menu-item-group>
             <template slot="title">分类</template>
-            <el-menu-item index="/categories">分类列表</el-menu-item>
+            <el-menu-item index="/categories/list">分类列表</el-menu-item>
           </el-menu-item-group>
         </el-submenu>
 
         <!-- 文章管理 -->
         <el-submenu index="2">
-          <template slot="title"><i class="el-icon-document"></i>文章管理</template>
+          <template slot="title">
+            <i class="el-icon-document"></i>
+            <span slot="title">文章管理</span>
+          </template>
           <el-menu-item-group>
             <template slot="title">文章</template>
             <el-menu-item index="/items">新建文章</el-menu-item>
@@ -37,7 +43,10 @@
 
         <!-- 留言管理 -->
         <el-submenu index="3">
-          <template slot="title"><i class="el-icon-s-help"></i>留言管理</template>
+          <template slot="title">
+            <i class="el-icon-s-help"></i>
+            <span slot="title">留言管理</span>
+          </template>
           <el-menu-item-group>
             <template slot="title">留言</template>
             <el-menu-item index="/items">留言列表</el-menu-item>
@@ -48,7 +57,10 @@
 
         <!-- 友链管理 -->
         <el-submenu index="4">
-          <template slot="title"><i class="el-icon-document"></i>友链管理</template>
+          <template slot="title">
+            <i class="el-icon-document"></i>
+            <span slot="title">友链管理</span>
+          </template>
           <el-menu-item-group>
             <template slot="title">友链</template>
             <el-menu-item index="/articles/list">友链列表</el-menu-item>
@@ -57,7 +69,10 @@
 
         <!-- 用户管理 -->
         <el-submenu index="6">
-          <template slot="title"><i class="el-icon-user"></i>用户管理</template>
+          <template slot="title">
+            <i class="el-icon-user"></i>
+            <span slot="title">用户管理</span>
+          </template>
           <el-menu-item-group>
             <span slot="title">用户</span>
             <el-menu-item index="/admin_users">用户列表</el-menu-item>
@@ -84,6 +99,7 @@
             style="font-size:18px"
           ></i>
         </div>
+
         <!-- 右侧菜单 -->
         <el-dropdown class="avatar-container" trigger="click">
           <div class="avatar-wrapper">
@@ -145,7 +161,8 @@ export default {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+    // box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
     .avatar-container {
       margin-right: 30px;
 

@@ -1,1 +1,70 @@
-@import './reset.css';
+// reset
+* {
+  box-sizing: border-box;
+  outline: none;
+}
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+html {
+  height: 100%;
+}
+body {
+  height: 100%;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  font-family: Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Arial,
+    sans-serif;
+}
+#app {
+  height: 100%;
+}
+a {
+  text-decoration: none;
+}
+
+//element-ui
+
+.el-card {
+  position: relative;
+  margin-top: 15px;
+  padding: 5px 10px;
+}
+
+.el-table {
+  margin-top: 15px;
+}
+
+.el-table tr td,
+.el-table tr th {
+  text-align: center !important;
+  font-size: 13px !important;
+}
+
+.el-dialog {
+  padding: 10px 35px;
+}
+
+.el-pagination {
+  margin-top: 15px;
+  text-align: center;
+}
+
+.el-rate {
+  padding-top: 12px;
+}
+
+.el-dialog {
+  min-width: 500px;
+}
+.add-btn {
+  border: none;
+  background-color: #fdb933;
+}
+.add-btn:hover {
+  border: none;
+  background-color: #fdb933;
+  opacity: 0.8;
+}

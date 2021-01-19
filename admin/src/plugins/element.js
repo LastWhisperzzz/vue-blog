@@ -14,7 +14,15 @@ import {
   DropdownItem,
   Main,
   Table,
-  TableColumn
+  TableColumn,
+  Breadcrumb,
+  BreadcrumbItem,
+  Card,
+  Dialog,
+  Form,
+  FormItem,
+  Message,
+  MessageBox
 } from 'element-ui'
 Vue.use(Button)
 Vue.use(Input)
@@ -31,3 +39,12 @@ Vue.use(DropdownItem)
 Vue.use(Main)
 Vue.use(Table)
 Vue.use(TableColumn)
+Vue.use(Breadcrumb)
+Vue.use(BreadcrumbItem)
+Vue.use(Card)
+Vue.use(Dialog)
+Vue.use(Form)
+Vue.use(FormItem)
+
+Vue.prototype.$message = Message
+Vue.prototype.$confirm = MessageBox.confirm
