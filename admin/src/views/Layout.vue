@@ -63,7 +63,7 @@
           </template>
           <el-menu-item-group>
             <template slot="title">友链</template>
-            <el-menu-item index="/articles/list">友链列表</el-menu-item>
+            <el-menu-item index="/links/list">友链列表</el-menu-item>
           </el-menu-item-group>
         </el-submenu>
 

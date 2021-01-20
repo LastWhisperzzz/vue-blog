@@ -25,7 +25,10 @@ import {
   MessageBox,
   Pagination,
   Row,
-  Col
+  Col,
+  Select,
+  Option,
+  Upload
 } from 'element-ui'
 Vue.use(Button)
 Vue.use(Input)
@@ -51,6 +54,9 @@ Vue.use(FormItem)
 Vue.use(Pagination)
 Vue.use(Row)
 Vue.use(Col)
+Vue.use(Select)
+Vue.use(Option)
+Vue.use(Upload)
 
 Vue.prototype.$message = Message
 Vue.prototype.$confirm = MessageBox.confirm

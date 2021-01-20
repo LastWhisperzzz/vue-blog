@@ -9,7 +9,7 @@
     <el-card>
       <el-form label-width="80px" @submit.native.prevent="save">
         <!-- 分类 -->
-        <el-form-item label="所属分类">
+        <el-form-item label="分类">
           <el-select v-model="model.categories" placeholder="请选择所属分类" clearable multiple>
             <el-option
               v-for="item in cateList"

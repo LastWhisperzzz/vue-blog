@@ -7,12 +7,11 @@
     </el-breadcrumb>
     <!-- 卡片视图区域 -->
     <el-card>
-      <el-row>
-        <el-col :span="4">
-          <el-input maxlength="8" clearable placeholder="请输入标题" v-model="query"></el-input>
-        </el-col>
-        <el-col :span="2" style="margin-left:10px;margin-right:-36px">
-          <el-button type="primary" icon="el-icon-search" @click="search">搜索</el-button>
+      <el-row :gutter="10">
+        <el-col :span="5">
+          <el-input maxlength="8" clearable placeholder="请输入标题" v-model="query">
+            <el-button slot="append" icon="el-icon-search" @clicl="search"></el-button>
+          </el-input>
         </el-col>
         <el-col :span="2">
           <el-button type="primary" icon="el-icon-plus" @click="add">写博客</el-button>
