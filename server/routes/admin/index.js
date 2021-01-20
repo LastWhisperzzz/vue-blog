@@ -1,7 +1,8 @@
 module.exports = app => {
   const express = require('express')
-  // const assert = require('http-assert')
-  // const jwt = require('jsonwebtoken')
+  const assert = require('http-assert')
+  const jwt = require('jsonwebtoken')
+  const AdminUser = require('../../models/AdminUser')
   const router = express.Router({
     mergeParams: true
   })
@@ -24,6 +25,15 @@ module.exports = app => {
     const token = jwt.sign({ id: user._id }, app.get('secret'))
     res.send({ message: '登陆成功', token })
   })
+
+  //第一次登录把注册注释取消
+  // app.post("/admin/api/register", async (req, res) => {
+  //   const user = await AdminUser.create({
+  //     username: req.body.username,
+  //     password: req.body.password
+  //   });
+  //   res.send(user)
+  // })
 
   // crud接口--------------------------------------------------------
   // 创建资源
