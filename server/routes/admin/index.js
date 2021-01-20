@@ -40,6 +40,33 @@ module.exports = app => {
     const items = await req.Model.find().setOptions(queryOptions)
     res.send(items)
   })
-  // 监听crud通用接口
+  // 监听资源crud通用接口
   app.use('/admin/api/rest/:resource', resourceMiddleware(), router)
+
+  // 图片上传
+  const multer = require('multer')
+  const upload = multer({
+    dest: __dirname + '/../../uploads'
+    // 替换为阿里云存储
+    //   storage: MAO({
+    //     config: {
+    //         region: 'oss-cn-beijing',
+    //         accessKeyId: 'LTAI4G5Nk12EQWfEajo9gEAD',
+    //         accessKeySecret: 'qpLegIjTQCYeWx81AmxwMflmUTVjTl',
+    //         bucket: 'my-moba'
+    //     }
+    // })
+  })
+  app.post('/admin/api/upload', upload.single('file'), async (req, res) => {
+    const file = req.file
+    file.url = `http://localhost:3000/uploads/${file.filename}`
+    res.send(file)
+  })
+
+  //错误处理函数
+  app.use(async (err, req, res, next) => {
+    res.status(err.statusCode || 500).send({
+      message: err.message
+    })
+  })
 }
