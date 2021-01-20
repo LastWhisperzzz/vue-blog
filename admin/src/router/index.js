@@ -5,6 +5,12 @@ Vue.use(VueRouter)
 
 const routes = [
   {
+    path: '/login',
+    name: 'login',
+    component: () => import('../views/Login.vue'),
+    meta: { isPublic: true }
+  },
+  {
     path: '/',
     name: 'Home',
     component: () => import('../views/Layout.vue'),
@@ -27,6 +33,19 @@ const routes = [
         component: () => import('../views/ArticleList.vue')
       },
       {
+        path: '/comments/list',
+        component: () => import('../views/CommentList.vue'),
+        props: true
+      },
+      {
+        path: '/messages/list',
+        component: () => import('../views/MessageList.vue')
+      },
+      {
+        path: '/users/list',
+        component: () => import('../views/UserList.vue')
+      },
+      {
         path: '/links/list',
         component: () => import('../views/LinkList.vue')
       }
@@ -36,6 +55,14 @@ const routes = [
 
 const router = new VueRouter({
   routes
+})
+
+// 客户端路由限制
+router.beforeEach((to, from, next) => {
+  if (!to.meta.isPublic && !sessionStorage.token) {
+    return next('/login')
+  }
+  next()
 })
 
 export default router

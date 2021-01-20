@@ -49,9 +49,9 @@
           </template>
           <el-menu-item-group>
             <template slot="title">留言</template>
-            <el-menu-item index="/items">留言列表</el-menu-item>
-            <el-menu-item index="/heroes/list">留言用户</el-menu-item>
-            <el-menu-item index="/heroes/list">文章评论</el-menu-item>
+            <el-menu-item index="/comments/list">文章评论</el-menu-item>
+            <el-menu-item index="/messages/list">留言列表</el-menu-item>
+            <el-menu-item index="/users/list">留言用户</el-menu-item>
           </el-menu-item-group>
         </el-submenu>
 
