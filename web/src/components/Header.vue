@@ -1,0 +1,127 @@
+<template>
+  <div class="head d-flex jc-around ai-center" :class="isScrolling ? `mini` : ''">
+    <!-- logo -->
+    <div class="hand">
+      <router-link tag="div" to="/">
+        <img src="https://miqilin-blog.oss-cn-shenzhen.aliyuncs.com/logo.png" height="42" />
+      </router-link>
+    </div>
+
+    <div class="d-flex text-white">
+      <!-- 导航菜单 -->
+      <router-link
+        exact
+        tag="div"
+        :to="item.link"
+        v-for="item in items"
+        :key="item.text"
+        active-class="active"
+        class="nav-item px-5 icon"
+        >{{ item.text }}</router-link
+      >
+      <!-- 音乐播放 -->
+      <div class="play pl-5">
+        <i
+          v-show="!isPlay"
+          active-class="active"
+          class="iconfont icon-music-o nav-item"
+          @click="playMusic(true)"
+        ></i>
+        <i
+          v-show="isPlay"
+          active-class="active"
+          class="iconfont icon-Pause1 nav-item"
+          @click="playMusic(false)"
+        ></i>
+      </div>
+      <div v-show="isPlay">
+        <audio
+          id="music"
+          ref="music"
+          src="https://miqilin-blog.oss-cn-shenzhen.aliyuncs.com/Prospect.mp3"
+          loop
+        ></audio>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'Header',
+  data() {
+    return {
+      isShowMenu: false,
+      isPlay: false,
+      isScrolling: false,
+      items: [
+        { text: '首页', link: '/' },
+        { text: '归档', link: '/archives' },
+        { text: '标签', link: '/tags' },
+        { text: '友链', link: '/links' },
+        { text: '留言', link: '/message' },
+        { text: '关于', link: '/about' }
+      ]
+    }
+  },
+  mounted() {
+    window.addEventListener('scroll', this.handScroll)
+  },
+  beforeDestroy() {
+    window.removeEventListener('scroll', this.handScroll)
+  },
+  methods: {
+    //监听滚动
+    handScroll() {
+      let scrollTop =
+        window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0
+      this.isScrolling = scrollTop > 0
+    },
+    // 控制音乐播放
+    playMusic(play) {
+      this.isPlay = !this.isPlay
+      if (play) {
+        this.$refs.music.play()
+      } else {
+        this.$refs.music.pause()
+      }
+    }
+  }
+}
+</script>
+
+<style lang="scss" scoped>
+@import '../assets/scss/_variables.scss';
+
+.head {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  width: 100%;
+  height: 65px;
+  background-color: transparent;
+  box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.5);
+  transition: 0.5s ease-in-out;
+  .icon-music-o {
+    font-size: 19px;
+  }
+  .icon-Pause1 {
+    font-size: 19px;
+  }
+}
+.nav-item.active {
+  color: map-get($colors, 'red');
+}
+
+.nav-item:hover {
+  color: map-get($colors, 'red');
+}
+
+//滚动 顶栏改变
+.mini {
+  background-color: map-get($colors, 'navcolor');
+  height: 56px;
+  transition: 0.5s ease-in-out;
+}
+</style>
