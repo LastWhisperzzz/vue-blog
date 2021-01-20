@@ -2,6 +2,7 @@ const express = require('express')
 const cors = require('cors')
 const app = express()
 
+app.set('secret', 'i2u34y12oi3u4y8')
 // 跨域
 app.use(cors())
 // 将请求转为json

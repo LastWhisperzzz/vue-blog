@@ -6,9 +6,26 @@ module.exports = app => {
     mergeParams: true
   })
 
+  // 登录校验中间件
+  const authMiddleware = require('../../middleware/auth')
   // 资源匹配中间件
   const resourceMiddleware = require('../../middleware/resource')
 
+  // 登录
+  app.post('/admin/api/login', async (req, res) => {
+    const { username, password } = req.body
+    // 1.根据用户名找用户
+    const user = await AdminUser.findOne({ username }).select('+password')
+    assert(user, 422, '用户名不存在')
+    // 2.校验密码
+    const isValid = require('bcryptjs').compareSync(password, user.password)
+    assert(isValid, 422, '用户名或密码错误')
+    // 3.返回token
+    const token = jwt.sign({ id: user._id }, app.get('secret'))
+    res.send({ message: '登陆成功', token })
+  })
+
+  // crud接口--------------------------------------------------------
   // 创建资源
   router.post('/', async (req, res) => {
     const model = await req.Model.create(req.body)
@@ -40,8 +57,8 @@ module.exports = app => {
     const items = await req.Model.find().setOptions(queryOptions)
     res.send(items)
   })
-  // 监听资源crud通用接口
-  app.use('/admin/api/rest/:resource', resourceMiddleware(), router)
+  // 监听资源crud通用接口--------------------------------------------------
+  app.use('/admin/api/rest/:resource', authMiddleware(), resourceMiddleware(), router)
 
   // 图片上传
   const multer = require('multer')
@@ -57,7 +74,7 @@ module.exports = app => {
     //     }
     // })
   })
-  app.post('/admin/api/upload', upload.single('file'), async (req, res) => {
+  app.post('/admin/api/upload', authMiddleware(), upload.single('file'), async (req, res) => {
     const file = req.file
     file.url = `http://localhost:3000/uploads/${file.filename}`
     res.send(file)
