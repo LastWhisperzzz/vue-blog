@@ -42,6 +42,38 @@
           loop
         ></audio>
       </div>
+      <!-- 移动端样式 导航菜单改下拉菜单 -->
+      <el-dropdown trigger="click" @visible-change="v => (isShowMenu = v)">
+        <div
+          class="menu-button hand"
+          @click="isShowMenu = !isShowMenu"
+          :class="{ isShowMenu: isShowMenu }"
+        >
+          <i></i>
+          <i></i>
+          <i></i>
+        </div>
+        <el-dropdown-menu slot="dropdown">
+          <el-dropdown-item>
+            <router-link tag="div" to="/">首页</router-link>
+          </el-dropdown-item>
+          <el-dropdown-item divided>
+            <router-link tag="div" to="/archives">归档</router-link>
+          </el-dropdown-item>
+          <el-dropdown-item divided>
+            <router-link tag="div" to="/tags">标签</router-link>
+          </el-dropdown-item>
+          <el-dropdown-item divided>
+            <router-link tag="div" to="/links">友链</router-link>
+          </el-dropdown-item>
+          <el-dropdown-item divided>
+            <router-link tag="div" to="/message">留言</router-link>
+          </el-dropdown-item>
+          <el-dropdown-item divided>
+            <router-link tag="div" to="/about">关于</router-link>
+          </el-dropdown-item>
+        </el-dropdown-menu>
+      </el-dropdown>
     </div>
   </div>
 </template>
@@ -123,5 +155,42 @@ export default {
   background-color: map-get($colors, 'navcolor');
   height: 56px;
   transition: 0.5s ease-in-out;
+}
+
+.menu-button {
+  display: none;
+  i {
+    display: block;
+    width: 24px;
+    height: 3px;
+    background-color: #fff;
+    margin: 5px auto;
+    transition: 0.2s ease-in-out;
+  }
+}
+.isShowMenu {
+  i {
+    &:nth-child(2) {
+      opacity: 0;
+    }
+    &:nth-child(1) {
+      transform: translateY(8px) rotate(-45deg);
+    }
+    &:nth-child(3) {
+      transform: translateY(-8px) rotate(45deg);
+    }
+  }
+}
+@media screen and (max-width: 650px) {
+  .nav-item {
+    display: none;
+  }
+  .play {
+    display: none;
+  }
+  .menu-button {
+    display: block;
+    margin-left: 120px;
+  }
 }
 </style>
