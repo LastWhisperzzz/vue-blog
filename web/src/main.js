@@ -3,6 +3,9 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 
+import http from './request/request'
+Vue.prototype.$http = http
+
 import './assets/scss/style.scss'
 import './assets/iconfont/iconfont.css'
 
