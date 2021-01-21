@@ -136,7 +136,6 @@ export default {
 <style lang="scss" scoped>
 .foot {
   width: 100%;
-  position: fixed;
   bottom: 0;
   left: 0;
 }
