@@ -15,7 +15,7 @@ require('./plugins/db')(app)
 // 后台管理接口
 require('./routes/admin')(app)
 // 前端页面接口
-// require('./routes/web')(app)
+require('./routes/web')(app)
 
 app.listen(3000, () => {
   console.log('App running at: http://localhost:3000')

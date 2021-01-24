@@ -128,6 +128,57 @@ module.exports = app => {
     res.send(data)
   })
 
+  // 用户
+  router.post('/users', async (req, res) => {
+    const data = await User.create(req.body)
+    res.send(data)
+  })
+  router.get('/users', async (req, res) => {
+    const data = await Users.find()
+    res.send(data)
+  })
+  router.put('/users/:id', async (req, res) => {
+    const data = await User.findByIdAndUpdate(req.params.id, req.body)
+    res.send(data)
+  })
+  router.get('/users/:id', async (req, res) => {
+    const data = await User.findById(req.params.id)
+    res.send(data)
+  })
+
+  // 评论
+  router.post('/comments', async (req, res) => {
+    const data = await Comment.create(req.body)
+    await Article.findByIdAndUpdate(
+      req.body.relateBlogId,
+      // { msgs: req.body.msgs },
+      {
+        $inc: {
+          msgs: 1
+        }
+      }
+    )
+    res.send(data)
+  })
+  router.get('/comments/:blogsId', async (req, res) => {
+    const comments = await Comment.find().where({
+      relateBlogId: req.params.blogsId
+    })
+    res.send(comments)
+  })
+
+  // 留言
+  router.post('/messages', async (req, res) => {
+    const data = await Message.create(req.body)
+    res.send(data)
+  })
+  router.get('/messages', async (req, res) => {
+    // console.log("123",await Blogs.findOne({
+    //     _id: req.params.blogsId}))
+    const messages = await Message.find()
+    res.send(messages)
+  })
+
   // 获取服务器时间
   router.get('/time', async (req, res) => {
     let time = new Date().getTime()
