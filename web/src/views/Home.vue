@@ -88,6 +88,8 @@
 </template>
 
 <script>
+import $ from 'jquery'
+
 export default {
   name: 'Home',
   data() {
@@ -99,7 +101,39 @@ export default {
       }
     }
   },
-  methods: {}
+  mounted() {
+    this.fetchData()
+  },
+  methods: {
+    // 获取文章数据
+    async fetchData() {
+      const res = await this.$http.get(`/articles/${this.pagination.currentPage}`)
+      this.articles = res.data.list
+      this.pagination.totalPage = res.data.totalPage
+      this.pagination.currentPage = res.data.currentPage
+    },
+    async goToPage(pageNum) {
+      this.pagination.currentPage = pageNum
+      this.fetchData()
+    },
+    prev() {
+      if (this.pagination.currentPage == 1) {
+        return
+      }
+      this.pagination.currentPage--
+      this.fetchData()
+    },
+    next() {
+      if (this.pagination.currentPage == this.pagination.totalPage) {
+        return
+      }
+      this.pagination.currentPage++
+      this.fetchData()
+    },
+    downPage() {
+      $('html,body').animate({ scrollTop: $('#header').outerHeight() - 56 }, 500)
+    }
+  }
 }
 </script>
 
@@ -160,6 +194,33 @@ export default {
   }
   to {
     width: 13em;
+  }
+}
+@keyframes shine {
+  0% {
+    visibility: hidden;
+    opacity: 0;
+  }
+  100% {
+    visibility: visible;
+    opacity: 1;
+  }
+}
+
+.post-container {
+  max-width: 1024px;
+  margin: 0 auto;
+  .top {
+    width: 270px;
+    height: 250px;
+  }
+}
+@media screen and (max-width: 768px) {
+  .shouye-text {
+    font-size: 24px !important;
+  }
+  .line-down {
+    font-size: 24px !important;
   }
 }
 </style>
