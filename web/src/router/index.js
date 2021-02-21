@@ -6,12 +6,11 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
-    name: 'Main',
     component: () => import('../views/Main.vue'),
     children: [
       {
         path: '/',
-        naem: 'Home',
+        name: 'Home',
         component: () => import('../views/Home.vue'),
         meta: {
           title: '首页 - MIQILIN'

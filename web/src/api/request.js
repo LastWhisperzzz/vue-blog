@@ -8,7 +8,6 @@ const http = axios.create({
 // 请求拦截
 http.interceptors.request.use(
   config => {
-    NProgress.start()
     return config
   },
   error => {
@@ -18,7 +17,6 @@ http.interceptors.request.use(
 // 响应拦截
 http.interceptors.response.use(
   response => {
-    NProgress.done()
     return response.status === 200 ? Promise.resolve(response) : Promise.reject(response)
   },
   error => {

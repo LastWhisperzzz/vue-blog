@@ -42,7 +42,7 @@
 </template>
 
 <script>
-import linkItem from '../components/linkItem.vue'
+import linkItem from '../components/linkItem'
 
 export default {
   components: {

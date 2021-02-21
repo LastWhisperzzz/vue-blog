@@ -4,7 +4,7 @@ import router from './router'
 import store from './store'
 
 // axios
-import http from './request/request'
+import http from './api/request'
 Vue.prototype.$http = http
 
 // 全局样式
