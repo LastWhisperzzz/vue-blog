@@ -1,7 +1,7 @@
 module.exports = app => {
   const router = require('express').Router()
   const mongoose = require('mongoose')
-  // const sendEmail = require('../../plugins/sendEmail.js');
+  const sendEmail = require('../../plugins/sendEmail.js')
   const Article = mongoose.model('Article')
   const Link = mongoose.model('Link')
   const Category = mongoose.model('Category')
@@ -177,6 +177,14 @@ module.exports = app => {
     //     _id: req.params.blogsId}))
     const messages = await Message.find()
     res.send(messages)
+  })
+
+  // 发送邮件
+  router.post('/email', async (req, res) => {
+    sendEmail(req.body)
+    res.send({
+      ok: 'ok'
+    })
   })
 
   // 获取服务器时间

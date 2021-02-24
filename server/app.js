@@ -5,7 +5,7 @@ const app = express()
 app.set('secret', 'i2u34y12oi3u4y8')
 // 跨域
 app.use(cors())
-// 将请求转为json
+// 将请求解析为json
 app.use(express.json())
 // 托管静态资源
 app.use('/uploads', express.static(__dirname + '/uploads'))

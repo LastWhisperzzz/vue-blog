@@ -90,6 +90,14 @@ module.exports = app => {
     res.send(file)
   })
 
+  app.post('/admin/api/email', async (req, res) => {
+    console.log(req.body)
+    sendEmail(req.body)
+    res.send({
+      ok: 'ok'
+    })
+  })
+
   //错误处理函数
   app.use(async (err, req, res, next) => {
     res.status(err.statusCode || 500).send({
