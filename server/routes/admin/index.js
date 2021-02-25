@@ -12,29 +12,6 @@ module.exports = app => {
   // 资源匹配中间件
   const resourceMiddleware = require('../../middleware/resource')
 
-  // 登录
-  app.post('/admin/api/login', async (req, res) => {
-    const { username, password } = req.body
-    // 1.根据用户名找用户
-    const user = await AdminUser.findOne({ username }).select('+password')
-    assert(user, 422, '用户名不存在')
-    // 2.校验密码
-    const isValid = require('bcryptjs').compareSync(password, user.password)
-    assert(isValid, 422, '用户名或密码错误')
-    // 3.返回token
-    const token = jwt.sign({ id: user._id }, app.get('secret'))
-    res.send({ message: '登陆成功', token })
-  })
-
-  //第一次登录把注册注释取消
-  // app.post("/admin/api/register", async (req, res) => {
-  //   const user = await AdminUser.create({
-  //     username: req.body.username,
-  //     password: req.body.password
-  //   });
-  //   res.send(user)
-  // })
-
   // crud接口--------------------------------------------------------
   // 创建资源
   router.post('/', async (req, res) => {
@@ -60,15 +37,48 @@ module.exports = app => {
   })
   // 资源列表
   router.get('/', async (req, res) => {
+    let keyword = req.query.keyword ? { name: { $regex: req.query.keyword, $options: 'i' } } : {}
+    const pageNum = Number(req.query.pageNum) || 1
+    const pageSize = Number(req.query.pageSize) || 8
+    const skipNum = (pageNum - 1) * pageSize
+
     const queryOptions = {}
-    if (req.Model.modelName === 'Category') {
-      queryOptions.populate = 'parent'
+    if (req.Model.modelName === 'Article') {
+      queryOptions.populate = 'categories'
+      keyword = req.query.keyword ? { title: { $regex: req.query.keyword, $options: 'i' } } : {}
     }
-    const items = await req.Model.find().setOptions(queryOptions)
-    res.send(items)
+    const total = await req.Model.countDocuments({ ...keyword })
+    const data = await req.Model.find({ ...keyword })
+      .setOptions(queryOptions)
+      .limit(pageSize)
+      .skip(skipNum)
+    res.send({ total, data })
   })
-  // 监听资源crud通用接口--------------------------------------------------
+  // 资源路由,监听crud通用接口--------------------------------------------------
   app.use('/admin/api/rest/:resource', authMiddleware(), resourceMiddleware(), router)
+
+  // 登录
+  app.post('/admin/api/login', async (req, res) => {
+    const { username, password } = req.body
+    // 1.根据用户名找用户
+    const user = await AdminUser.findOne({ username }).select('+password')
+    assert(user, 422, '用户名不存在')
+    // 2.校验密码
+    const isValid = require('bcryptjs').compareSync(password, user.password)
+    assert(isValid, 422, '用户名或密码错误')
+    // 3.返回token
+    const token = jwt.sign({ id: user._id }, app.get('secret'))
+    res.send({ message: '登陆成功', token })
+  })
+
+  // 注册(第一次登录把注释取消)
+  // app.post("/admin/api/register", async (req, res) => {
+  //   const user = await AdminUser.create({
+  //     username: req.body.username,
+  //     password: req.body.password
+  //   });
+  //   res.send(user)
+  // })
 
   // 图片上传
   const multer = require('multer')
@@ -90,6 +100,7 @@ module.exports = app => {
     res.send(file)
   })
 
+  // 发送邮件
   app.post('/admin/api/email', async (req, res) => {
     console.log(req.body)
     sendEmail(req.body)
