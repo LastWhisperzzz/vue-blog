@@ -7,7 +7,22 @@
     </el-breadcrumb>
     <!-- 卡片视图区域 -->
     <el-card>
-      <el-button type="primary" icon="el-icon-plus" @click="showAddDialog">添加分类</el-button>
+      <el-row :gutter="10">
+        <el-col :span="5">
+          <el-input
+            maxlength="8"
+            placeholder="请输入名称"
+            v-model="queryInfo.keyword"
+            clearable
+            @clear="getCateList"
+          >
+            <el-button slot="append" icon="el-icon-search" @click="getCateList"></el-button>
+          </el-input>
+        </el-col>
+        <el-col :span="2">
+          <el-button type="primary" icon="el-icon-plus" @click="showAddDialog">添加分类</el-button>
+        </el-col>
+      </el-row>
       <el-table :data="cateList" border stripe>
         <!-- 序号 -->
         <el-table-column type="index" label="序号"></el-table-column>
@@ -32,6 +47,17 @@
           </template>
         </el-table-column>
       </el-table>
+
+      <!-- 分页 -->
+      <el-pagination
+        @size-change="handleSizeChange"
+        @current-change="handleCurrentChange"
+        :current-page="queryInfo.pageNum"
+        :page-sizes="[5, 8, 10, 15]"
+        :page-size="queryInfo.pageSize"
+        layout="total, sizes, prev, pager, next, jumper"
+        :total="total"
+      ></el-pagination>
     </el-card>
 
     <!-- 新增编辑对话框 -->
@@ -64,7 +90,13 @@ export default {
     return {
       cateList: [],
       formData: {},
-      dialogVisible: false
+      dialogVisible: false,
+      queryInfo: {
+        keyword: '',
+        pageNum: 1,
+        pageSize: 8
+      },
+      total: 0
     }
   },
   created() {
@@ -73,8 +105,9 @@ export default {
   methods: {
     // 获取分类列表
     async getCateList() {
-      const res = await this.axios.get('rest/categories')
-      this.cateList = res.data
+      const res = await this.axios.get('rest/categories', { params: this.queryInfo })
+      this.cateList = res.data.data
+      this.total = res.data.total
     },
     showAddDialog() {
       this.dialogVisible = true
@@ -113,6 +146,15 @@ export default {
         .catch(() => {
           this.$message.info('删除失败!')
         })
+    },
+    // 监听分页
+    handleSizeChange(newSize) {
+      this.queryInfo.pageSize = newSize
+      this.getCateList()
+    },
+    handleCurrentChange(newNum) {
+      this.queryInfo.pageNum = newNum
+      this.getCateList()
     }
   }
 }

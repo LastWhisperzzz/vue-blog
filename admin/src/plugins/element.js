@@ -28,7 +28,8 @@ import {
   Col,
   Select,
   Option,
-  Upload
+  Upload,
+  Switch
 } from 'element-ui'
 Vue.use(Button)
 Vue.use(Input)
@@ -57,6 +58,7 @@ Vue.use(Col)
 Vue.use(Select)
 Vue.use(Option)
 Vue.use(Upload)
+Vue.use(Switch)
 
 Vue.prototype.$message = Message
 Vue.prototype.$confirm = MessageBox.confirm

@@ -43,7 +43,7 @@
               code_style="monokai-sublime"
               :ishljs="true"
               ref="mavon"
-              v-model="model.content"
+              v-model="model.body"
               @imgAdd="$imgAdd"
             ></mavon-editor>
           </div>
@@ -87,7 +87,7 @@ export default {
     //获取分类列表
     async getCateList() {
       const res = await this.axios.get('rest/categories')
-      this.cateList = res.data
+      this.cateList = res.data.data
     },
     // 富文本编辑器图片上传
     $imgAdd(pos, $file) {

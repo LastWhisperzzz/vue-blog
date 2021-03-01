@@ -9,8 +9,14 @@
     <el-card>
       <el-row :gutter="10">
         <el-col :span="5">
-          <el-input maxlength="8" clearable placeholder="请输入标题" v-model="query">
-            <el-button slot="append" icon="el-icon-search" @clicl="search"></el-button>
+          <el-input
+            maxlength="8"
+            placeholder="请输入标题"
+            v-model="queryInfo.keyword"
+            clearable
+            @clear="getArticleList"
+          >
+            <el-button slot="append" icon="el-icon-search" @click="getArticleList"></el-button>
           </el-input>
         </el-col>
         <el-col :span="2">
@@ -21,6 +27,12 @@
       <el-table :data="articleList" border stripe>
         <!-- 序号 -->
         <el-table-column type="index" label="序号"></el-table-column>
+        <!-- 封面 -->
+        <el-table-column label="封面">
+          <template slot-scope="scope">
+            <img :src="scope.row.icon" style="width:45px;height:45px;" />
+          </template>
+        </el-table-column>
         <!-- 分类 -->
         <el-table-column label="所属分类" border stripe>
           <template slot-scope="scope">
@@ -36,7 +48,7 @@
           </template>
         </el-table-column>
         <!-- 更新时间 -->
-        <el-table-column prop="updatedAt" label="最后更新时间">
+        <el-table-column prop="updatedAt" label="更新时间">
           <template scope="scope">
             {{ scope.row.updatedAt | date('YYYY-MM-DD HH:mm:ss') }}
           </template>
@@ -63,9 +75,9 @@
       <el-pagination
         @size-change="handleSizeChange"
         @current-change="handleCurrentChange"
-        :current-page="pageParams.pagenum"
+        :current-page="queryInfo.pageNum"
         :page-sizes="[5, 8, 10, 15]"
-        :page-size="pageParams.pagesize"
+        :page-size="queryInfo.pageSize"
         layout="total, sizes, prev, pager, next, jumper"
         :total="total"
       ></el-pagination>
@@ -79,12 +91,10 @@ export default {
   data() {
     return {
       articleList: [],
-      //查询参数
-      query: '',
-      //分页数据
-      pageParams: {
-        pagenum: 1,
-        pagesize: 5
+      queryInfo: {
+        keyword: '',
+        pageNum: 1,
+        pageSize: 8
       },
       total: 0
     }
@@ -94,8 +104,11 @@ export default {
   },
   methods: {
     //获取文章列表
-    async getArticleList() {},
-
+    async getArticleList() {
+      const res = await this.axios.get('rest/articles', { params: this.queryInfo })
+      this.articleList = res.data.data
+      this.total = res.data.total
+    },
     add() {
       this.$router.push('/articles/create')
     },
@@ -117,14 +130,13 @@ export default {
           this.$message.info('删除失败!')
         })
     },
-    search() {},
-    //监听分页
-    handleSizeChange(pagesize) {
-      this.pageParams.pagesize = pagesize
+    // 监听分页
+    handleSizeChange(newSize) {
+      this.queryInfo.pageSize = newSize
       this.getArticleList()
     },
-    handleCurrentChange(pagenum) {
-      this.pageParams.pagenum = pagenum
+    handleCurrentChange(newNum) {
+      this.queryInfo.pageNum = newNum
       this.getArticleList()
     }
   }

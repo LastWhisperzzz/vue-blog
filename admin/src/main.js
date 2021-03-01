@@ -2,8 +2,10 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 
-import './plugins/element'
 import './assets/css/global.scss'
+
+import './plugins/element'
+import './plugins/filters'
 
 import axios from './request/request'
 Vue.prototype.axios = axios
@@ -17,7 +19,7 @@ Vue.mixin({
   methods: {
     getAuthHeaders() {
       return {
-        Authorization: `Bearer ${localStorage.token || ''}`
+        Authorization: `Bearer ${sessionStorage.token || ''}`
       }
     }
   }

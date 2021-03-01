@@ -7,7 +7,23 @@
     </el-breadcrumb>
 
     <el-card>
-      <el-button type="primary" icon="el-icon-plus" @click="showAddDialog">添加用户</el-button>
+      <el-row :gutter="10">
+        <el-col :span="5">
+          <el-input
+            maxlength="8"
+            placeholder="请输入名称"
+            v-model="queryInfo.keyword"
+            clearable
+            @clear="getUserList"
+          >
+            <el-button slot="append" icon="el-icon-search" @click="getUserList"></el-button>
+          </el-input>
+        </el-col>
+        <el-col :span="2">
+          <el-button type="primary" icon="el-icon-plus" @click="showAddDialog">添加账号</el-button>
+        </el-col>
+      </el-row>
+
       <el-table :data="userList" border stripe>
         <!-- 序号 -->
         <el-table-column type="index" label="序号"></el-table-column>
@@ -15,9 +31,10 @@
         <el-table-column label="用户名" prop="username"></el-table-column>
         <!-- 状态 -->
         <el-table-column label="状态">
-          <template slot-scope="scope">
+          <!-- <template slot-scope="scope">
             <el-switch v-model="scope.row.state" @change="userStateChanged()" disabled> </el-switch>
-          </template>
+          </template> -->
+          <el-switch :value="true" @change="userStateChanged()" disabled> </el-switch>
         </el-table-column>
         <el-table-column label="操作">
           <template slot-scope="scope">
@@ -36,6 +53,17 @@
           </template>
         </el-table-column>
       </el-table>
+
+      <!-- 分页 -->
+      <el-pagination
+        @size-change="handleSizeChange"
+        @current-change="handleCurrentChange"
+        :current-page="queryInfo.pageNum"
+        :page-sizes="[5, 8, 10, 15]"
+        :page-size="queryInfo.pageSize"
+        layout="total, sizes, prev, pager, next, jumper"
+        :total="total"
+      ></el-pagination>
     </el-card>
 
     <!-- 新增编辑对话框 -->
@@ -72,9 +100,15 @@ export default {
   name: 'AdminUser',
   data() {
     return {
-      userList: [],
+      userList: [{ state: true }],
       formData: {},
-      dialogVisible: false
+      dialogVisible: false,
+      queryInfo: {
+        keyword: '',
+        pageNum: 1,
+        pageSize: 8
+      },
+      total: 0
     }
   },
   created() {
@@ -83,8 +117,9 @@ export default {
   methods: {
     // 获取用户列表
     async getUserList() {
-      const res = await this.axios.get('rest/admin_users')
-      this.userList = res.data
+      const res = await this.axios.get('rest/admin_users', { params: this.queryInfo })
+      this.userList = res.data.data
+      this.total = res.data.total
     },
     showAddDialog() {
       this.dialogVisible = true
@@ -122,6 +157,15 @@ export default {
     },
     async userStateChanged() {
       this.$message.success('更新用户状态成功')
+    },
+    // 监听分页
+    handleSizeChange(newSize) {
+      this.queryInfo.pageSize = newSize
+      this.getUserList()
+    },
+    handleCurrentChange(newNum) {
+      this.queryInfo.pageNum = newNum
+      this.getUserList()
     }
   }
 }

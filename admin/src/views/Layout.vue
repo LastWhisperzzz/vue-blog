@@ -44,7 +44,7 @@
         <!-- 留言管理 -->
         <el-submenu index="3">
           <template slot="title">
-            <i class="el-icon-s-help"></i>
+            <i class="el-icon-s-comment"></i>
             <span slot="title">留言管理</span>
           </template>
           <el-menu-item-group>
@@ -58,7 +58,7 @@
         <!-- 友链管理 -->
         <el-submenu index="4">
           <template slot="title">
-            <i class="el-icon-document"></i>
+            <i class="el-icon-paperclip"></i>
             <span slot="title">友链管理</span>
           </template>
           <el-menu-item-group>
@@ -67,15 +67,15 @@
           </el-menu-item-group>
         </el-submenu>
 
-        <!-- 用户管理 -->
+        <!-- 系统设置 -->
         <el-submenu index="6">
           <template slot="title">
-            <i class="el-icon-user"></i>
-            <span slot="title">用户管理</span>
+            <i class="el-icon-setting"></i>
+            <span slot="title">系统设置</span>
           </template>
           <el-menu-item-group>
-            <span slot="title">用户</span>
-            <el-menu-item index="/admin_users">用户列表</el-menu-item>
+            <span slot="title">管理员</span>
+            <el-menu-item index="/admin_users">管理员列表</el-menu-item>
           </el-menu-item-group>
         </el-submenu>
       </el-menu>

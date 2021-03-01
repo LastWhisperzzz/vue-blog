@@ -9,8 +9,14 @@
     <el-card>
       <el-row :gutter="10">
         <el-col :span="5">
-          <el-input maxlength="8" clearable placeholder="请输入站名" v-model="query">
-            <el-button slot="append" icon="el-icon-search" @clicl="search"></el-button>
+          <el-input
+            maxlength="8"
+            placeholder="请输入名称"
+            v-model="queryInfo.keyword"
+            clearable
+            @clear="getLinkList"
+          >
+            <el-button slot="append" icon="el-icon-search" @click="getLinkList"></el-button>
           </el-input>
         </el-col>
         <el-col :span="2">
@@ -23,6 +29,12 @@
         <el-table-column type="index" label="序号"></el-table-column>
         <!-- 名称 -->
         <el-table-column prop="name" label="名称"></el-table-column>
+        <!-- 图标 -->
+        <el-table-column label="图标">
+          <template slot-scope="scope">
+            <img :src="scope.row.icon" style="width:45px;height:45px;" />
+          </template>
+        </el-table-column>
         <!-- 地址 -->
         <el-table-column prop="site" label="地址"></el-table-column>
         <!-- 描述 -->
@@ -46,6 +58,15 @@
       </el-table>
 
       <!-- 分页 -->
+      <el-pagination
+        @size-change="handleSizeChange"
+        @current-change="handleCurrentChange"
+        :current-page="queryInfo.pageNum"
+        :page-sizes="[5, 8, 10, 15]"
+        :page-size="queryInfo.pageSize"
+        layout="total, sizes, prev, pager, next, jumper"
+        :total="total"
+      ></el-pagination>
     </el-card>
 
     <!-- 新增编辑对话框 -->
@@ -94,7 +115,12 @@ export default {
       linkList: [],
       formData: {},
       dialogVisible: false,
-      query: ''
+      queryInfo: {
+        keyword: '',
+        pageNum: 1,
+        pageSize: 8
+      },
+      total: 0
     }
   },
   created() {
@@ -102,7 +128,11 @@ export default {
   },
   methods: {
     //获取友链列表
-    getLinkList() {},
+    async getLinkList() {
+      const res = await this.axios.get('rest/links', { params: this.queryInfo })
+      this.linkList = res.data.data
+      this.total = res.data.total
+    },
     showAddDialog() {
       this.dialogVisible = true
     },
@@ -141,7 +171,15 @@ export default {
           this.$message.info('删除失败!')
         })
     },
-    search() {}
+    // 监听分页
+    handleSizeChange(newSize) {
+      this.queryInfo.pageSize = newSize
+      this.getLinkList()
+    },
+    handleCurrentChange(newNum) {
+      this.queryInfo.pageNum = newNum
+      this.getLinkList()
+    }
   }
 }
 </script>
