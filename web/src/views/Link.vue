@@ -31,8 +31,8 @@
         </div>
         <div class="bg-postcolor px-5 py-2 text-green-1 fs-sm bdr">
           <p>• 格式比如：</p>
-          <p>• 网站名称：米淇淋的个人博客</p>
-          <p>• 网站地址：https://amberzqx.com</p>
+          <p>• 网站名称：橘子的个人博客</p>
+          <p>• 网站地址：https://juzisang.com</p>
           <p>• 描述：我劝你要多喝热水哈哈哈</p>
         </div>
         <p class="my-9 text-grey-2">暂时先这样，同时欢迎互换友链，到留言页留言即可。 ^_^</p>

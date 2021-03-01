@@ -13,7 +13,7 @@ const routes = [
         name: 'Home',
         component: () => import('../views/Home.vue'),
         meta: {
-          title: '首页 - MIQILIN'
+          title: '首页 - LastWhisper'
         }
       },
       {
@@ -21,7 +21,7 @@ const routes = [
         name: 'Archive',
         component: () => import('../views/Archive.vue'),
         meta: {
-          title: '归档 - MIQILIN'
+          title: '归档 - LastWhisper'
         }
       },
       {
@@ -29,7 +29,7 @@ const routes = [
         name: 'Tag',
         component: () => import('../views/Tag.vue'),
         meta: {
-          title: '标签 - MIQILIN'
+          title: '标签 - LastWhisper'
         }
       },
       {
@@ -37,7 +37,7 @@ const routes = [
         name: 'Link',
         component: () => import('../views/Link.vue'),
         meta: {
-          title: '友链 - MIQILIN'
+          title: '友链 - LastWhisper'
         }
       },
       {
@@ -45,7 +45,7 @@ const routes = [
         name: 'Message',
         component: () => import('../views/Message.vue'),
         meta: {
-          title: '留言 - MIQILIN'
+          title: '留言 - LastWhisper'
         }
       },
       {
@@ -53,7 +53,7 @@ const routes = [
         name: 'About',
         component: () => import('../views/About.vue'),
         meta: {
-          title: '关于 - MIQILIN'
+          title: '关于 - LastWhisper'
         }
       },
       {
@@ -62,7 +62,7 @@ const routes = [
         component: () => import('../views/Article.vue'),
         props: true,
         meta: {
-          title: '文章详情 - MIQILIN'
+          title: '文章详情 - LastWhisper'
         }
       }
     ]

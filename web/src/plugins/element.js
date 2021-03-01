@@ -10,7 +10,8 @@ import {
   Dialog,
   Drawer,
   Tooltip,
-  Backtop
+  Backtop,
+  Icon
 } from 'element-ui'
 
 Vue.use(Button)
@@ -24,3 +25,4 @@ Vue.use(Dialog)
 Vue.use(Drawer)
 Vue.use(Tooltip)
 Vue.use(Backtop)
+Vue.use(Icon)

@@ -26,21 +26,26 @@
       <div class="pt-5 d-flex jc-center">
         <div class="px-8 mb-4">
           <router-link class="hand" tag="div" to="/">
-            <img src="https://miqilin-blog.oss-cn-shenzhen.aliyuncs.com/logo.png" height="32" />
+            <!-- <img src="https://miqilin-blog.oss-cn-shenzhen.aliyuncs.com/logo.png" height="32" /> -->
+            <img
+              class="foot-logo"
+              src="https://cdn.jsdelivr.net/gh/LIlGG/cdn@1.0.8/img/Sakura/images/sakura.svg"
+            />
+            <!-- <div class="text-grey-1 fs-md mt-5">Lastwhisper's Blog</div> -->
           </router-link>
           <div class="text-grey-2 fs-sm">
             <p class="load">I work with passion & love.</p>
             <p>
-              The Site is Powered by
+              Powered by
               <a href="https://github.com/LastWhisperzzz" target="_blank">LastWhisper</a>
             </p>
             <p>
               <a href="https://beian.miit.gov.cn/" target="_blank" class="text-grey-2"
-                >浙ICP备2020039354号</a
+                >浙ICP备2020039354号-1</a
               >
             </p>
             <p>
-              本博客已运行{{ this.timeObj.day }}天{{ this.timeObj.hour }}时{{
+              本站已运行{{ this.timeObj.day }}天{{ this.timeObj.hour }}时{{
                 this.timeObj.minute
               }}分{{ this.timeObj.second }}秒
             </p>
@@ -134,6 +139,32 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.foot-logo {
+  width: 30px;
+  height: 30px;
+  opacity: 0.3;
+  // margin: 0 auto;
+  // background-size: cover;
+  // background-position: center center;
+  // background-repeat: no-repeat;
+  animation: poi-deg 12s infinite linear;
+  -webkit-animation: poi-deg 12s infinite linear;
+}
+.foot-title {
+  font-size: 16px;
+  // font-family: 'Comic Sans MS', sans-serif;
+  vertical-align: middle;
+}
+
+@keyframes poi-deg {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 .foot {
   width: 100%;
   bottom: 0;

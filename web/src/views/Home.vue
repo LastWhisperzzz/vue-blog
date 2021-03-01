@@ -139,7 +139,8 @@ export default {
 
 <style lang="scss" scoped>
 .bgImg {
-  background-image: url(https://miqilin-blog.oss-cn-shenzhen.aliyuncs.com/bg-blog.png);
+  background-image: url(http://oss.lastwhisper.net/bg-blog.png);
+  // background-image: url(https://miqilin-blog.oss-cn-shenzhen.aliyuncs.com/bg-blog.png);
   width: 100%;
   height: 100vh;
   background-position: center;

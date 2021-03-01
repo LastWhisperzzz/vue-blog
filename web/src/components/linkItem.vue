@@ -14,7 +14,7 @@
           </div>
         </a>
       </el-tooltip>
-      <div class="fs-xs text-grey-1 mt-3 text-ellipsis">{{ item.description }}</div>
+      <div class="fs-xs text-grey-1 mt-3 text-ellipsis">{{ item.desc }}</div>
     </div>
   </div>
 </template>

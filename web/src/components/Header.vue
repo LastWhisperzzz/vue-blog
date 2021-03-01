@@ -2,8 +2,9 @@
   <div class="head d-flex jc-around ai-center" :class="isScrolling ? `mini` : ''">
     <!-- logo -->
     <div class="hand">
-      <router-link tag="div" to="/">
-        <img src="https://miqilin-blog.oss-cn-shenzhen.aliyuncs.com/logo.png" height="42" />
+      <router-link tag="div" to="/" class="d-flex ai-center">
+        <!-- <img class="bdr50" src="http://oss.lastwhisper.net/avatar.jpg" height="42" /> -->
+        <p class="title ml-5 fs-xxxxl text-lightgrey">Lastwhisper's Blog</p>
       </router-link>
     </div>
 
@@ -125,6 +126,11 @@ export default {
 <style lang="scss" scoped>
 @import '../assets/scss/_variables.scss';
 
+.title {
+  font-size: 22px;
+  font-family: 'Comic Sans MS', sans-serif;
+  // font-family: 'Segoe Script', 'Ink Free', 'Segoe Print';
+}
 .head {
   position: fixed;
   top: 0;

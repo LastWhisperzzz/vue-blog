@@ -10,9 +10,9 @@
         <span class="fs-xxl text-grey-1">关于自己</span>
       </div>
       <div class="pl-5 text-green-1">
-        <p>• 转行前端程序员一枚，目前📍：杭州</p>
-        <p>• 未来希望成为一名优秀的前端程序🐵</p>
-        <p>• 业余爱好比较多，喜欢烹饪、烘焙、音乐制作、踢⚽等等</p>
+        <p>• Java程序员一枚，目前📍：杭州</p>
+        <p>• 未来希望成为一名优秀的全栈程序🐵</p>
+        <p>• 业余爱好比较多，喜欢烹饪、摄影、音乐制作、打⚽等等</p>
       </div>
       <div class="py-4">
         <span class="fs-xxl text-green">#</span>
@@ -39,47 +39,47 @@
             class="text-green-1 bd-bottom-about"
             >• myBlog(本博客)</a
           >
-          - 基于NodeJs、Vue、MongoDB实现的一款伪全栈博客系统🔥
+          - 基于NodeJs、Vue、MongoDB实现的一款个人博客网站🔥
         </p>
         <p>
           <a
-            href="https://github.com/miqilin21/iMoney"
+            href="https://github.com/LastWhisperzzz/react-moblie-shop"
             target="_blank"
             class="text-green-1 bd-bottom-about"
-            >• 蘑菇记账</a
+            >• react-shop</a
           >
-          - 基于Vue全家桶、TypeScript、Echarts实现的一款极简的本地记账应用🤑
+          - 基于React、NodeJs、MongoDB构建的手机商城🎉
         </p>
         <p>
           <a
-            href="https://github.com/miqilin21/weapp-mogu-bill"
+            href="https://github.com/LastWhisperzzz/nice-music"
             target="_blank"
             class="text-green-1 bd-bottom-about"
-            >• 蘑菇记账(小程序版)</a
+            >• nice-music</a
           >
-          - 原生小程序实现的一款蘑菇记账应用💰
+          - 基于Vue和NeteaseCloudMusicApi搭建的仿网易云音乐webApp🎄
         </p>
         <p>
           <a
-            href="https://github.com/miqilin21/wx-todos"
+            href="https://github.com/LastWhisperzzz/vue-node-moba"
             target="_blank"
             class="text-green-1 bd-bottom-about"
-            >• TODOS(小程序版)</a
+            >• vue-moba</a
           >
-          - 原生小程序实现的一款TODO应用工具📅
+          - 基于Vue+Node+MongoDB开发的英雄联盟移动端官网⛄
         </p>
         <p>
           <a
-            href="https://github.com/miqilin21/cv"
+            href="https://github.com/LastWhisperzzz/resume"
             target="_blank"
             class="text-green-1 bd-bottom-about"
-            >• cv</a
+            >• resume</a
           >
-          - 原生js实现的米淇淋个人简历📄
+          - 原生js实现的动态个人简历📄
         </p>
         <p>
           <a
-            href="https://github.com/miqilin21"
+            href="https://github.com/LastWhisperzzz"
             target="_blank"
             class="text-green-1 bd-bottom-about"
             >• 其他项目</a

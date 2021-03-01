@@ -61,7 +61,6 @@
 </template>
 
 <script>
-import dayjs from 'dayjs'
 export default {
   data() {
     return {
@@ -71,6 +70,7 @@ export default {
   methods: {
     async getArchive() {
       const res = await this.$http.get('/archive')
+      console.log(res.data)
       this.model = res.data
     }
   },
