@@ -34,7 +34,7 @@
           </template>
         </el-table-column>
         <!-- 分类 -->
-        <el-table-column label="所属分类" border stripe>
+        <el-table-column label="所属分类">
           <template slot-scope="scope">
             <span>{{ scope.row.categories.map(item => item.name).join('/') }}</span>
           </template>

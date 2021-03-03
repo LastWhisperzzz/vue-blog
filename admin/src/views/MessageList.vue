@@ -9,8 +9,14 @@
     <el-card>
       <el-row :gutter="10">
         <el-col :span="5">
-          <el-input maxlength="8" clearable placeholder="请输入昵称" v-model="query">
-            <el-button slot="append" icon="el-icon-search" @clicl="search"></el-button>
+          <el-input
+            maxlength="8"
+            placeholder="请输入昵称"
+            v-model="queryInfo.keyword"
+            clearable
+            @clear="getMessageList"
+          >
+            <el-button slot="append" icon="el-icon-search" @click="getMessageList"></el-button>
           </el-input>
         </el-col>
       </el-row>
@@ -19,17 +25,22 @@
         <!-- 序号 -->
         <el-table-column type="index" label="序号"></el-table-column>
         <!-- 头像 -->
-        <el-table-column label="头像">
+        <!-- <el-table-column label="头像">
           <template slot-scope="scope">
-            <img :src="scope.row.avatar" style="width:45px;height:45px;" />
+            <img :src="scope.row.avatarImg" style="width:45px;height:45px;" />
           </template>
-        </el-table-column>
+        </el-table-column> -->
         <el-table-column prop="nickName" label="昵称"></el-table-column>
         <el-table-column prop="byAiteName" label="艾特谁"></el-table-column>
         <el-table-column prop="content" label="留言"></el-table-column>
+        <el-table-column prop="createdAt" label="日期">
+          <template scope="scope">
+            {{ scope.row.createdAt | date('YYYY-MM-DD HH:mm:ss') }}
+          </template>
+        </el-table-column>
         <el-table-column label="操作">
           <template slot-scope="scope">
-            <el-button size="small" type="primary" icon="el-icon-edit"></el-button>
+            <!-- <el-button size="small" type="primary" icon="el-icon-edit"></el-button> -->
             <el-button
               size="small"
               type="danger"
@@ -39,6 +50,17 @@
           </template>
         </el-table-column>
       </el-table>
+
+      <!-- 分页 -->
+      <el-pagination
+        @size-change="handleSizeChange"
+        @current-change="handleCurrentChange"
+        :current-page="queryInfo.pageNum"
+        :page-sizes="[5, 8, 10, 15]"
+        :page-size="queryInfo.pageSize"
+        layout="total, sizes, prev, pager, next, jumper"
+        :total="total"
+      ></el-pagination>
     </el-card>
   </div>
 </template>
@@ -49,13 +71,24 @@ export default {
   data() {
     return {
       messageList: [],
-      query: ''
+      queryInfo: {
+        keyword: '',
+        pageNum: 1,
+        pageSize: 8
+      },
+      total: 0
     }
   },
-  created() {},
+  created() {
+    this.getMessageList()
+  },
   methods: {
     //获取留言列表
-    getMessageList() {},
+    async getMessageList() {
+      const res = await this.axios.get('rest/messages', { params: this.queryInfo })
+      this.messageList = res.data.data
+      this.total = res.data.total
+    },
     // 删除
     remove(row) {
       this.$confirm(`是否确定要删除留言 '${row.content}'`, '提示', {
@@ -64,7 +97,7 @@ export default {
         type: 'warning'
       })
         .then(async () => {
-          await this.axios.delete(`rest/links/${row._id}`)
+          await this.axios.delete(`rest/messages/${row._id}`)
           this.$message.success('删除成功!')
           this.getMessageList()
         })
@@ -72,7 +105,15 @@ export default {
           this.$message.info('删除失败!')
         })
     },
-    search() {}
+    // 监听分页
+    handleSizeChange(newSize) {
+      this.queryInfo.pageSize = newSize
+      this.getLinkList()
+    },
+    handleCurrentChange(newNum) {
+      this.queryInfo.pageNum = newNum
+      this.getLinkList()
+    }
   }
 }
 </script>
