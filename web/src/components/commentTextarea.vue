@@ -2,12 +2,7 @@
   <div class="pt-5">
     <div class="d-flex">
       <div class="avatar-box text-center">
-        <img
-          @click="lookUserInfo"
-          v-if="userInfo.avatarImg"
-          :src="userInfo.avatarImg"
-          alt="miqilin头像"
-        />
+        <img @click="lookUserInfo" v-if="userInfo.avatarImg" :src="userInfo.avatarImg" alt="头像" />
         <i v-else @click="lookUserInfo" class="iconfont icon-touxiang hand"></i>
         <p class="mt-2 avatar text-center fs-lg text-grey-2">
           {{ userInfo.nickName ? userInfo.nickName : '留言' }}
@@ -142,7 +137,7 @@ export default {
       this.$message.success('发布成功')
 
       this.btnLoading = false
-      if (this.userInfo.nickName == 'miqilin博主') {
+      if (this.userInfo.nickName == '博主') {
         let byAiteObj = await this.$http.get(`users/${this.byAiteUserId}`)
         let replyObj = {
           recipient: byAiteObj.data.email,

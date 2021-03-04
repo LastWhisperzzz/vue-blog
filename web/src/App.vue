@@ -14,6 +14,7 @@ export default {
     this.love()
   },
   methods: {
+    // 鼠标点击特效
     love() {
       !(function(e, t, a) {
         function r() {

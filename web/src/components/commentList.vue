@@ -12,7 +12,7 @@
     >
       <div class="d-flex">
         <div class="avatar-one text-left">
-          <img :src="item.avatarImg" alt="miqilin头像" width="50" height="50" />
+          <img :src="item.avatarImg" alt="头像" width="50" height="50" />
         </div>
         <div class="flex-1 fs-lg">
           <div class="d-flex ai-center">
@@ -32,7 +32,7 @@
             <div class v-for="(c, i) in item.children" :key="i">
               <div class="d-flex pt-2">
                 <div class="mini-avatar text-left">
-                  <img :src="c.avatarImg" alt="miqilin头像" width="30" height="30" />
+                  <img :src="c.avatarImg" alt="头像" width="30" height="30" />
                 </div>
                 <div class="flex-1">
                   <div class="mt-0 fs-md">

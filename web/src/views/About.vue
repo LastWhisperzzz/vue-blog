@@ -12,7 +12,7 @@
       <div class="pl-5 text-green-1">
         <p>• Java程序员一枚，目前📍：杭州</p>
         <p>• 未来希望成为一名优秀的全栈程序🐵</p>
-        <p>• 业余爱好比较多，喜欢烹饪、摄影、音乐制作、打⚽等等</p>
+        <p>• 业余爱好比较多，喜欢摄影、音乐、羽毛球🏸等等</p>
       </div>
       <div class="py-4">
         <span class="fs-xxl text-green">#</span>

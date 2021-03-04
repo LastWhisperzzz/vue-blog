@@ -1,4 +1,5 @@
 import axios from 'axios'
+import NProgress from 'nprogress'
 
 const http = axios.create({
   baseURL: 'http://localhost:3000/web/api',
@@ -8,6 +9,7 @@ const http = axios.create({
 // 请求拦截
 http.interceptors.request.use(
   config => {
+    NProgress.start()
     return config
   },
   error => {
@@ -17,6 +19,7 @@ http.interceptors.request.use(
 // 响应拦截
 http.interceptors.response.use(
   response => {
+    NProgress.done()
     return response.status === 200 ? Promise.resolve(response) : Promise.reject(response)
   },
   error => {

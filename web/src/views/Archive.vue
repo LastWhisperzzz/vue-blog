@@ -1,10 +1,8 @@
 <template>
   <div class="main-container" v-if="model">
     <div class="main-content archive-page">
-      <div class="categorys-item mt-6" v-for="item in model" :key="item._id">
-        <div class="categorys-title">
-          {{ item.list[0].createdAt | date('YYYY') }}年{{ item._id }}月
-        </div>
+      <div class="categorys-item mt-6" v-for="(item, i) in model" :key="i">
+        <div class="categorys-title">{{ item._id.year }}年{{ item._id.month }}月</div>
         <div class="post-lists">
           <div class="post-lists-body">
             <div class="post-list-item" v-for="article in item.list" :key="article.createdAt">
@@ -70,7 +68,6 @@ export default {
   methods: {
     async getArchive() {
       const res = await this.$http.get('/archive')
-      console.log(res.data)
       this.model = res.data
     }
   },
