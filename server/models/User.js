@@ -3,7 +3,7 @@ const mongoose = require('mongoose')
 const schema = new mongoose.Schema(
   {
     nickName: { type: String },
-    avatar: { type: String },
+    avatarImg: { type: String },
     email: { type: String },
     url: { type: String }
   },

@@ -3,6 +3,7 @@ module.exports = app => {
   const assert = require('http-assert')
   const jwt = require('jsonwebtoken')
   const AdminUser = require('../../models/AdminUser')
+  const sendEmail = require('../../plugins/sendEmail.js')
   const router = express.Router({
     mergeParams: true
   })
@@ -39,7 +40,7 @@ module.exports = app => {
   router.get('/', async (req, res) => {
     let keyword = req.query.keyword ? { name: { $regex: req.query.keyword, $options: 'i' } } : {}
     const pageNum = Number(req.query.pageNum) || 1
-    const pageSize = Number(req.query.pageSize) || 8
+    const pageSize = Number(req.query.pageSize) || 10
     const skipNum = (pageNum - 1) * pageSize
 
     const queryOptions = {}
@@ -47,11 +48,17 @@ module.exports = app => {
       queryOptions.populate = 'categories'
       keyword = req.query.keyword ? { title: { $regex: req.query.keyword, $options: 'i' } } : {}
     }
+    if (req.Model.modelName === 'Comment') {
+      queryOptions.populate = 'relateBlogId'
+    }
     const total = await req.Model.countDocuments({ ...keyword })
     const data = await req.Model.find({ ...keyword })
       .setOptions(queryOptions)
       .limit(pageSize)
       .skip(skipNum)
+      .sort({
+        createdAt: -1
+      })
     res.send({ total, data })
   })
   // 资源路由,监听crud通用接口--------------------------------------------------
@@ -109,6 +116,8 @@ module.exports = app => {
     })
   })
 
+  // 首页数据
+  app.get('rest/index', async (req, res) => {})
   //错误处理函数
   app.use(async (err, req, res, next) => {
     res.status(err.statusCode || 500).send({

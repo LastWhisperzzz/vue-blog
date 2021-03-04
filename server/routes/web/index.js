@@ -64,7 +64,8 @@ module.exports = app => {
       {
         $group: {
           _id: {
-            $month: '$createdAt'
+            year: { $year: '$createdAt' },
+            month: { $month: '$createdAt' }
           },
           count: {
             $sum: 1

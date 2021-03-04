@@ -1,8 +1,8 @@
 /**
  *
  * @Description 邮件发送
- * 调用方法:sendMail('994718917@qq.com','这是测试邮件', 'Hi miqilin,这是一封测试邮件');
- * @Author miqilin
+ * 调用方法:sendMail('994718917@qq.com','这是测试邮件', 'Hello World,这是一封测试邮件');
+ * @Author LastWhisper
  * @Created 2020/04/05 15:10
  * 技术只是解决问题的选择,而不是解决问题的根本...
  *
@@ -13,8 +13,8 @@ const smtpTransport = require('nodemailer-smtp-transport')
 const config = {
   email: {
     service: 'QQ', // 邮箱类别，我固定QQ
-    user: '994718917@qq.com',
-    pass: 'otyujutrdgsabfgd'
+    user: '502881164@qq.com',
+    pass: 'dhmphaflldnlbidi'
   }
 }
 
