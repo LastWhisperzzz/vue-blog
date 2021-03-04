@@ -154,7 +154,7 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .layout-container {
   height: 100vh;
   .el-header {
