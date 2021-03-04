@@ -12,16 +12,16 @@
           </p>
           <ul class="contact">
             <li>
-              <el-tooltip class="item" effect="dark" content="1154793918@qq.com" placement="top">
-                <a
-                  href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&amp;email=1154793918@qq.com"
-                  target="_blank"
-                >
-                  <img src="../assets/images/contact/mail.png" />
-                </a>
-              </el-tooltip>
+              <!-- <el-tooltip class="item" effect="dark" content="1154793918@qq.com" placement="top"></el-tooltip> -->
+              <!-- <a
+                href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&amp;email=1154793918@qq.com"
+                target="_blank"
+              > -->
+              <a href="https://mail.qq.com" target="_blank">
+                <img src="../assets/images/contact/mail.png" />
+              </a>
             </li>
-            <li>
+            <!-- <li>
               <el-tooltip class="item" effect="dark" content="1154793918" placement="top">
                 <a
                   href="http://wpa.qq.com/msgrd?v=3&amp;uin=1154793918&amp;site=qq&amp;menu=yes"
@@ -37,7 +37,7 @@
                   <img src="../assets/images/contact/wexin.png" />
                 </a>
               </el-tooltip>
-            </li>
+            </li> -->
             <li>
               <a href="https://github.com/LastWhisperzzz" target="_blank">
                 <img src="../assets/images/contact/github.png" />
@@ -61,7 +61,7 @@
             <span>{{ articleNum }}</span
             >篇
           </div>
-          <div class="tips">9天前发布了一篇文章，继续努力哦！</div>
+          <div class="tips">{{ updateTime }}天前发布了一篇文章，继续努力哦！</div>
         </el-card>
       </el-col>
       <el-col :span="8">
@@ -71,7 +71,7 @@
             <span>{{ commentNum }}</span
             >条
           </div>
-          <div class="tips">感谢陌生人的留言！</div>
+          <div class="tips">来自小伙伴们的留言！</div>
         </el-card>
       </el-col>
       <el-col :span="8">
@@ -90,6 +90,7 @@ export default {
   data() {
     return {
       articleNum: 0,
+      updateTime: 0,
       commentNum: 0
     }
   },
@@ -101,8 +102,18 @@ export default {
       const res = await this.axios.get('rest/articles')
       const res2 = await this.axios.get('rest/messages')
       const res3 = await this.axios.get('rest/comments')
+      this.updateTime = this.datedifference(new Date(), res.data.data[0].createdAt)
       this.articleNum = res.data.total
       this.commentNum = res2.data.total + res3.data.total
+    },
+    datedifference(sDate1, sDate2) {
+      var dateSpan, tempDate, iDays
+      sDate1 = Date.parse(sDate1)
+      sDate2 = Date.parse(sDate2)
+      dateSpan = sDate2 - sDate1
+      dateSpan = Math.abs(dateSpan)
+      iDays = Math.floor(dateSpan / (24 * 3600 * 1000))
+      return iDays
     }
   }
 }
