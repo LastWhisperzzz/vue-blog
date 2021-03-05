@@ -4,7 +4,7 @@
       <div class="info">
         <div class="userinfo">
           <div class="avatar">
-            <img src="../assets/images/default-avatar.jpg" alt="" />
+            <img src="http://oss.lastwhisper.net/default-avatar.jpg" alt="" />
           </div>
           <p class="nickname">Last Whisper</p>
           <p class="description">

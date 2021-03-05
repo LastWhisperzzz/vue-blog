@@ -2,14 +2,17 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 
-import './assets/css/global.scss'
-
-import './plugins/element'
-import './plugins/filters'
-
-import axios from './request/request'
+// axios
+import axios from './api/request'
 Vue.prototype.axios = axios
 
+// 全局样式
+import './assets/css/global.scss'
+
+// import './plugins/element'
+import './plugins/filters'
+
+// element图片上传
 Vue.mixin({
   computed: {
     uploadUrl() {
