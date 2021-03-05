@@ -89,10 +89,13 @@ module.exports = app => {
 
   // 图片上传
   const multer = require('multer')
+  // const aliyun = require('multer-aliyun-oss')
+  const qiniu = require('multer-storage-qiniu')
   const upload = multer({
-    dest: __dirname + '/../../uploads'
+    // dest: __dirname + '/../../uploads'
+
     // 替换为阿里云存储
-    //   storage: MAO({
+    //   storage: aliyun({
     //     config: {
     //         region: 'oss-cn-beijing',
     //         accessKeyId: 'LTAI4G5Nk12EQWfEajo9gEAD',
@@ -100,10 +103,20 @@ module.exports = app => {
     //         bucket: 'my-moba'
     //     }
     // })
+
+    // 七牛云
+    storage: qiniu({
+      config: {
+        ACCESS_KEY: '45n8WQyKZUlIuzEm6eR-sNiSAINJQ222ZPergO3H',
+        SECRET_KEY: 'Fz06aC7EQBg9XwDqREMcQPNpKMOkTGfJHBXM5Pvr',
+        bucket: 'lastwhisper'
+      }
+    })
   })
   app.post('/admin/api/upload', authMiddleware(), upload.single('file'), async (req, res) => {
     const file = req.file
-    file.url = `http://localhost:3000/uploads/${file.filename}`
+    file.url = `http://oss.lastwhisper.net/${file.filename}`
+    // file.url = `http://localhost:3000/uploads/${file.filename}`
     res.send(file)
   })
 
