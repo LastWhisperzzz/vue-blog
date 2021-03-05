@@ -47,7 +47,7 @@
             v-if="userForm.avatarImg"
             :src="userForm.avatarImg"
             class="logo-img"
-            alt="miqilin头像缩略图"
+            alt="头像缩略图"
           />
           <i v-else class="el-icon-plus avatar-uploader-icon"></i>
         </el-upload>

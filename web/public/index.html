@@ -13,6 +13,15 @@
   <meta name="description"
     content="LastWhisper个人博客是我个人从需求分析、网页设计、创建项目、部署上线全栈搭建的网站，我将会通过他来实践自己的所学，让自己得到成长，也希望借此结交更多前辈好友。也乐于分享我的博客网站在前端、node.js、设计和web的各个细节上的点点滴滴，愿与你有缘，共同进步！" />
   <meta name="keywords" content="LastWhisper,前端工程师,vue.js,node.js,博客网站" />
+
+  <!-- 使用CDN的CSS文件 -->
+  <% for (var i in htmlWebpackPlugin.options.cdn && htmlWebpackPlugin.options.cdn.css) { %>
+    <link rel="stylesheet" href="<%= htmlWebpackPlugin.options.cdn.css[i] %>" />
+    <% } %>
+      <!-- 使用CDN的JS文件 -->
+      <% for (var i in htmlWebpackPlugin.options.cdn && htmlWebpackPlugin.options.cdn.js) { %>
+        <script type="text/javascript" src="<%= htmlWebpackPlugin.options.cdn.js[i] %>"></script>
+        <% } %>
 </head>
 
 <body>

@@ -13,7 +13,7 @@ Vue.prototype.$http = http
 import './assets/scss/style.scss'
 import './assets/iconfont/iconfont.css'
 
-import './plugins/element'
+// import './plugins/element'
 import './plugins/filters'
 import './plugins/global'
 
