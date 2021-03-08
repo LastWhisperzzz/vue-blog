@@ -3,7 +3,7 @@
     <!-- logo -->
     <div class="hand">
       <router-link tag="div" to="/" class="d-flex ai-center">
-        <!-- <img class="bdr50" src="http://oss.lastwhisper.net/avatar.jpg" height="42" /> -->
+        <!-- <img class="bdr50" src="https://oss.lastwhisper.net/avatar.jpg" height="42" /> -->
         <p class="title ml-5 fs-xxxxl text-lightgrey">Lastwhisper's Blog</p>
       </router-link>
     </div>
@@ -36,7 +36,7 @@
         ></i>
       </div>
       <div v-show="isPlay">
-        <audio id="music" ref="music" src="http://oss.lastwhisper.net/wuxin.mp3" loop></audio>
+        <audio id="music" ref="music" src="https://oss.lastwhisper.net/wuxin.mp3" loop></audio>
       </div>
       <!-- 移动端样式 导航菜单改下拉菜单 -->
       <el-dropdown trigger="click" @visible-change="v => (isShowMenu = v)">

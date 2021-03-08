@@ -27,10 +27,7 @@
         <div class="px-8 mb-4">
           <router-link class="hand" tag="div" to="/">
             <!-- <img src="https://miqilin-blog.oss-cn-shenzhen.aliyuncs.com/logo.png" height="32" /> -->
-            <img
-              class="foot-logo"
-              src="https://cdn.jsdelivr.net/gh/LIlGG/cdn@1.0.8/img/Sakura/images/sakura.svg"
-            />
+            <img class="foot-logo" src="https://oss.lastwhisper.net/sakura.svg" />
             <!-- <div class="text-grey-1 fs-md mt-5">Lastwhisper's Blog</div> -->
           </router-link>
           <div class="text-grey-2 fs-sm">
