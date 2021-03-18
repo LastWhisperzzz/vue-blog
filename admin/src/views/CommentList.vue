@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-breadcrumb separator-class="el-icon-arrow-right">
+    <el-breadcrumb separator="/">
       <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
       <el-breadcrumb-item>留言管理</el-breadcrumb-item>
       <el-breadcrumb-item>文章评论</el-breadcrumb-item>
@@ -37,13 +37,14 @@
         </el-table-column>
         <el-table-column prop="nickName" label="昵称"></el-table-column>
         <el-table-column prop="content" label="评论"></el-table-column>
-        <el-table-column prop="createdAt" label="日期">
+        <el-table-column prop="createdAt" label="日期" width="200">
           <template scope="scope">
             {{ scope.row.createdAt | date('YYYY-MM-DD HH:mm:ss') }}
           </template>
         </el-table-column>
-        <el-table-column label="操作">
+        <el-table-column label="操作" width="200">
           <template slot-scope="scope">
+            <el-button size="small" type="primary" icon="el-icon-s-comment"></el-button>
             <el-button
               size="small"
               type="danger"

@@ -17,16 +17,10 @@
           <template slot="title">首页</template>
         </el-menu-item>
         <!-- 分类管理 -->
-        <el-submenu index="1">
-          <template slot="title">
-            <i class="el-icon-menu"></i>
-            <span slot="title">分类管理</span>
-          </template>
-          <el-menu-item-group>
-            <template slot="title">分类</template>
-            <el-menu-item index="/categories/list">分类列表</el-menu-item>
-          </el-menu-item-group>
-        </el-submenu>
+        <el-menu-item index="/categories/list">
+          <i class="el-icon-collection-tag"></i>
+          <span slot="title">分类标签</span>
+        </el-menu-item>
 
         <!-- 文章管理 -->
         <el-submenu index="2">
@@ -35,7 +29,6 @@
             <span slot="title">文章管理</span>
           </template>
           <el-menu-item-group>
-            <template slot="title">文章</template>
             <el-menu-item index="/articles/create">新建文章</el-menu-item>
             <el-menu-item index="/articles/list">文章列表</el-menu-item>
           </el-menu-item-group>
@@ -48,7 +41,6 @@
             <span slot="title">留言管理</span>
           </template>
           <el-menu-item-group>
-            <template slot="title">留言</template>
             <el-menu-item index="/comments/list">文章评论</el-menu-item>
             <el-menu-item index="/messages/list">留言列表</el-menu-item>
             <el-menu-item index="/users/list">用户列表</el-menu-item>
@@ -56,16 +48,10 @@
         </el-submenu>
 
         <!-- 友链管理 -->
-        <el-submenu index="4">
-          <template slot="title">
-            <i class="el-icon-paperclip"></i>
-            <span slot="title">友链管理</span>
-          </template>
-          <el-menu-item-group>
-            <template slot="title">友链</template>
-            <el-menu-item index="/links/list">友链列表</el-menu-item>
-          </el-menu-item-group>
-        </el-submenu>
+        <el-menu-item index="/links/list">
+          <i class="el-icon-paperclip"></i>
+          <span slot="title">友链管理</span>
+        </el-menu-item>
 
         <!-- 系统设置 -->
         <el-submenu index="6">
@@ -74,10 +60,17 @@
             <span slot="title">系统设置</span>
           </template>
           <el-menu-item-group>
-            <span slot="title">管理员</span>
-            <el-menu-item index="/admin_users">管理员列表</el-menu-item>
+            <el-menu-item index="/admin_users">管理员</el-menu-item>
           </el-menu-item-group>
         </el-submenu>
+
+        <!-- 谷歌分析 -->
+        <el-menu-item index="">
+          <a href="https://analytics.google.com" target="_blank" style="color:#BFCBD9;">
+            <i class="el-icon-s-data"></i>
+            <span slot="title">Google Analytics</span>
+          </a>
+        </el-menu-item>
       </el-menu>
     </el-aside>
 
@@ -198,6 +191,17 @@ export default {
   }
 }
 .el-menu-vertical:not(.el-menu--collapse) {
-  width: 200px;
+  width: 210px;
+}
+
+// menu-item 展开 hover样式
+.nest-menu .el-submenu > .el-submenu__title,
+.el-submenu .el-menu-item {
+  min-width: 210px !important;
+  background-color: #1f2d3d !important;
+
+  &:hover {
+    background-color: #001528 !important;
+  }
 }
 </style>

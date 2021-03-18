@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-breadcrumb separator-class="el-icon-arrow-right">
+    <el-breadcrumb separator="/">
       <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
       <el-breadcrumb-item>文章管理</el-breadcrumb-item>
       <el-breadcrumb-item>文章列表</el-breadcrumb-item>
@@ -28,13 +28,13 @@
         <!-- 序号 -->
         <el-table-column type="index" label="序号"></el-table-column>
         <!-- 封面 -->
-        <el-table-column label="封面">
+        <el-table-column label="封面" width="200">
           <template slot-scope="scope">
             <img :src="scope.row.icon" style="width:45px;height:45px;" />
           </template>
         </el-table-column>
         <!-- 分类 -->
-        <el-table-column label="所属分类">
+        <el-table-column label="所属分类" width="200">
           <template slot-scope="scope">
             <span>{{ scope.row.categories.map(item => item.name).join('/') }}</span>
           </template>
@@ -42,18 +42,18 @@
         <!-- 标题 -->
         <el-table-column label="标题" prop="title"></el-table-column>
         <!-- 创建时间 -->
-        <el-table-column prop="createdAt" label="创建时间">
+        <el-table-column prop="createdAt" label="创建时间" width="200">
           <template scope="scope">
             {{ scope.row.createdAt | date('YYYY-MM-DD HH:mm:ss') }}
           </template>
         </el-table-column>
         <!-- 更新时间 -->
-        <el-table-column prop="updatedAt" label="更新时间">
+        <el-table-column prop="updatedAt" label="更新时间" width="200">
           <template scope="scope">
             {{ scope.row.updatedAt | date('YYYY-MM-DD HH:mm:ss') }}
           </template>
         </el-table-column>
-        <el-table-column label="操作">
+        <el-table-column label="操作" width="200">
           <template slot-scope="scope">
             <el-button
               size="small"

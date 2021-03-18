@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-breadcrumb separator-class="el-icon-arrow-right">
+    <el-breadcrumb separator="/">
       <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
       <el-breadcrumb-item>系统管理</el-breadcrumb-item>
       <el-breadcrumb-item>管理员列表</el-breadcrumb-item>
@@ -83,8 +83,8 @@
             <el-option label="测试权限" value="2"> </el-option>
           </el-select>
         </el-form-item> -->
-        <el-form-item label="密码">
-          <el-input v-model="formData.password"></el-input>
+        <el-form-item label="密码" prop="password">
+          <el-input v-model.trim="formData.password"></el-input>
         </el-form-item>
       </el-form>
       <span slot="footer" class="dialog-footer">
@@ -108,7 +108,10 @@ export default {
         pageNum: 1,
         pageSize: 8
       },
-      total: 0
+      total: 0,
+      rules: {
+        password: [{ required: true, message: '请输入密码', trigger: 'blur' }]
+      }
     }
   },
   created() {

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-breadcrumb separator-class="el-icon-arrow-right">
+    <el-breadcrumb separator="/">
       <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
       <el-breadcrumb-item>文章管理</el-breadcrumb-item>
       <el-breadcrumb-item>{{ id ? '编辑' : '创建' }}文章</el-breadcrumb-item>
@@ -10,7 +10,13 @@
       <el-form label-width="80px" @submit.native.prevent="save">
         <!-- 分类 -->
         <el-form-item label="分类">
-          <el-select v-model="model.categories" placeholder="请选择所属分类" clearable multiple>
+          <el-select
+            v-model="model.categories"
+            placeholder="请选择所属分类"
+            clearable
+            multiple
+            style="width:380px"
+          >
             <el-option
               v-for="item in cateList"
               :key="item._id"
@@ -21,7 +27,7 @@
         </el-form-item>
         <!-- 标题 -->
         <el-form-item label="标题">
-          <el-input v-model="model.title"></el-input>
+          <el-input v-model="model.title" style="width:380px"></el-input>
         </el-form-item>
         <!-- 封面 -->
         <el-form-item label="封面">

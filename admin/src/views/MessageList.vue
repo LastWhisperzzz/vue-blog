@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-breadcrumb separator-class="el-icon-arrow-right">
+    <el-breadcrumb separator="/">
       <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
       <el-breadcrumb-item>留言管理</el-breadcrumb-item>
       <el-breadcrumb-item>留言列表</el-breadcrumb-item>
@@ -40,7 +40,7 @@
         </el-table-column>
         <el-table-column label="操作">
           <template slot-scope="scope">
-            <!-- <el-button size="small" type="primary" icon="el-icon-edit"></el-button> -->
+            <el-button size="small" type="primary" icon="el-icon-s-comment"></el-button>
             <el-button
               size="small"
               type="danger"

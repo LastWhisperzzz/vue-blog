@@ -1,9 +1,9 @@
 <template>
   <div>
-    <el-breadcrumb separator-class="el-icon-arrow-right">
+    <el-breadcrumb separator="/">
       <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
-      <el-breadcrumb-item>分类管理</el-breadcrumb-item>
-      <el-breadcrumb-item>分类列表</el-breadcrumb-item>
+      <el-breadcrumb-item>分类标签</el-breadcrumb-item>
+      <el-breadcrumb-item>标签列表</el-breadcrumb-item>
     </el-breadcrumb>
     <!-- 卡片视图区域 -->
     <el-card>
@@ -20,17 +20,17 @@
           </el-input>
         </el-col>
         <el-col :span="2">
-          <el-button type="primary" icon="el-icon-plus" @click="showAddDialog">添加分类</el-button>
+          <el-button type="primary" icon="el-icon-plus" @click="showAddDialog">添加标签</el-button>
         </el-col>
       </el-row>
       <el-table :data="cateList" border stripe>
         <!-- 序号 -->
         <el-table-column type="index" label="序号"></el-table-column>
         <!-- 分类名称 -->
-        <el-table-column label="分类名称" prop="name"></el-table-column>
+        <el-table-column label="名称" prop="name" width="200"></el-table-column>
         <!-- 描述 -->
         <el-table-column label="描述" prop="desc"></el-table-column>
-        <el-table-column label="操作">
+        <el-table-column label="操作" width="200">
           <template slot-scope="scope">
             <el-button
               size="small"

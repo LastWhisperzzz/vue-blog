@@ -15,25 +15,23 @@
 
       <el-form-item prop="username">
         <!-- 用户名 -->
-        <el-input
-          type="text"
-          placeholder="用户名"
-          prefix-icon="iconfont iconicon"
-          v-model="loginForm.username"
-          autocomplete="on"
-        ></el-input>
+        <el-input type="text" placeholder="用户名" v-model="loginForm.username" autocomplete="on">
+          <i slot="prefix" class="el-input__icon el-icon-user"></i>
+        </el-input>
       </el-form-item>
 
       <el-form-item class="password" prop="password">
         <!-- 密码 -->
         <el-input
-          type="password"
-          placeholder="密码"
-          prefix-icon="iconfont iconlock"
           v-model="loginForm.password"
-          @keyup.native.enter="login"
+          placeholder="密码"
+          type="password"
+          tabindex="2"
           autocomplete="on"
-        ></el-input>
+          @keyup.native.enter="login"
+        >
+          <i slot="prefix" class="el-input__icon el-icon-lock"></i>
+        </el-input>
       </el-form-item>
 
       <!-- 按钮 -->
@@ -74,6 +72,12 @@ export default {
       }
     }
   },
+  mounted() {
+    // 背景粒子特效
+    // require('particles.js')
+    // eslint-disable-next-line no-undef
+    // particlesJS('particles-js', particlesConfig)
+  },
   methods: {
     login() {
       this.$refs.loginForm.validate(async valid => {
@@ -109,6 +113,13 @@ $cursor: #fff;
 }
 /* reset element-ui css */
 .login-container {
+  .background-canvas {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
   .el-input {
     display: inline-block;
     height: 48px;
@@ -148,7 +159,8 @@ $light_gray: #eee;
 .login-container {
   min-height: 100%;
   width: 100%;
-  background-color: $bg;
+  background: url('https://oss.lastwhisper.net/wallhaven.jpg');
+  // background-color: $bg;
   overflow: hidden;
   .login-form {
     position: relative;

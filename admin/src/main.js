@@ -8,6 +8,7 @@ Vue.prototype.axios = axios
 
 // 全局样式
 import './assets/css/global.scss'
+import './assets/iconfont/iconfont.css'
 
 // import './plugins/element'
 import './plugins/filters'

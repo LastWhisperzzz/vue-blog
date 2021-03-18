@@ -13,11 +13,11 @@ const routes = [
   {
     path: '/',
     component: () => import('../views/Layout.vue'),
-    redirect: '/index',
+    redirect: '/dashboard',
     children: [
       {
-        path: 'index',
-        component: () => import('../views/Index.vue')
+        path: 'dashboard',
+        component: () => import('../views/dashboard/index')
       },
       {
         path: '/categories/list',
