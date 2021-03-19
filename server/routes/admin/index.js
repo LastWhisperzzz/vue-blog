@@ -40,7 +40,7 @@ module.exports = app => {
   router.get('/', async (req, res) => {
     let keyword = req.query.keyword ? { name: { $regex: req.query.keyword, $options: 'i' } } : {}
     const pageNum = Number(req.query.pageNum) || 1
-    const pageSize = Number(req.query.pageSize) || 10
+    const pageSize = Number(req.query.pageSize) || 100
     const skipNum = (pageNum - 1) * pageSize
 
     const queryOptions = {}
