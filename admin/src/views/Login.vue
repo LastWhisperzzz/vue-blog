@@ -160,7 +160,7 @@ $light_gray: #eee;
   min-height: 100%;
   width: 100%;
   background: url('https://oss.lastwhisper.net/wallhaven.jpg');
-  // background-color: $bg;
+  background-color: $bg;
   overflow: hidden;
   .login-form {
     position: relative;
