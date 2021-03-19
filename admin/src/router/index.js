@@ -20,6 +20,10 @@ const routes = [
         component: () => import('../views/dashboard/index')
       },
       {
+        path: 'profile',
+        component: () => import('../views/profile/index')
+      },
+      {
         path: '/categories/list',
         component: () => import('../views/CategoryList.vue')
       },

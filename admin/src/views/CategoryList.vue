@@ -30,6 +30,7 @@
         <el-table-column label="名称" prop="name" width="200"></el-table-column>
         <!-- 描述 -->
         <el-table-column label="描述" prop="desc"></el-table-column>
+        <el-table-column label="文章" prop="count" width="200"></el-table-column>
         <el-table-column label="操作" width="200">
           <template slot-scope="scope">
             <el-button
@@ -106,7 +107,19 @@ export default {
     // 获取分类列表
     async getCateList() {
       const res = await this.axios.get('rest/categories', { params: this.queryInfo })
-      this.cateList = res.data.data
+      const res2 = await this.axios.get('rest/articles')
+      let cate = res.data.data
+      let articles = res2.data.data
+      cate.map(item => {
+        let count = 0
+        articles.map(item2 => {
+          if (item._id == item2.categories[0]._id) {
+            count += 1
+          }
+        })
+        item['count'] = count
+      })
+      this.cateList = cate
       this.total = res.data.total
     },
     showAddDialog() {

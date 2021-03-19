@@ -33,24 +33,30 @@
             <img :src="scope.row.icon" style="width:45px;height:45px;" />
           </template>
         </el-table-column>
+        <!-- 标题 -->
+        <el-table-column label="标题" prop="title"></el-table-column>
         <!-- 分类 -->
         <el-table-column label="所属分类" width="200">
           <template slot-scope="scope">
             <span>{{ scope.row.categories.map(item => item.name).join('/') }}</span>
           </template>
         </el-table-column>
-        <!-- 标题 -->
-        <el-table-column label="标题" prop="title"></el-table-column>
         <!-- 创建时间 -->
         <el-table-column prop="createdAt" label="创建时间" width="200">
           <template scope="scope">
-            {{ scope.row.createdAt | date('YYYY-MM-DD HH:mm:ss') }}
+            {{ scope.row.createdAt | date('YYYY-MM-DD') }}
           </template>
         </el-table-column>
         <!-- 更新时间 -->
-        <el-table-column prop="updatedAt" label="更新时间" width="200">
+        <!-- <el-table-column prop="updatedAt" label="更新时间" width="200">
           <template scope="scope">
             {{ scope.row.updatedAt | date('YYYY-MM-DD HH:mm:ss') }}
+          </template>
+        </el-table-column> -->
+        <!-- 访问量 -->
+        <el-table-column label="字数" width="200">
+          <template slot-scope="scope">
+            <span>{{ scope.row.body.length }}</span>
           </template>
         </el-table-column>
         <el-table-column label="操作" width="200">

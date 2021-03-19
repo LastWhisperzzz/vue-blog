@@ -103,11 +103,14 @@
             <i class="el-icon-caret-bottom" />
           </div>
           <el-dropdown-menu slot="dropdown">
-            <a href="javascript:;">
-              <el-dropdown-item>前台页面</el-dropdown-item>
-            </a>
+            <router-link to="/">
+              <el-dropdown-item>前往首页</el-dropdown-item>
+            </router-link>
+            <router-link to="/profile">
+              <el-dropdown-item>个人信息</el-dropdown-item>
+            </router-link>
             <a target="_blank" href="https://github.com/LastWhisperzzz">
-              <el-dropdown-item>项目地址</el-dropdown-item>
+              <el-dropdown-item>GitHub</el-dropdown-item>
             </a>
             <el-dropdown-item divided @click.native="logout">
               <span style="display:block;">退出登录</span>
